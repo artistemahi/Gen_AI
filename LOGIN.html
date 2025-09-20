@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Spirax&display=swap" rel="stylesheet">
+
+    <style>
+        /* Login card */
+    .login-box {
+  background: #fff;
+  width: 350px;
+  padding: 50px 35px;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* This centers it perfectly */
+}
+
+    .login-box h1   {
+      margin: 0 0 20px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .login-box p {
+        margin: 5px 10px;       /* space above and below paragraph */
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 8px ;
+      margin-top: 20px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;  /* 👈 ensures padding doesn’t overflow */
+    }
+    .msgdiv{
+      background-color: aqua;
+      color: white;
+      padding: 10px 2px;
+      margin: 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+      opacity: 0;
+      animation:fadeout 7s forwards;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: grey;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .dntacc {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 13px;
+  
+}
+
+.dntacc a {
+  text-decoration: none;
+  color: #0073b1;
+  font-size: medium;
+}
+
+    
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .login-box {
+        width: 90%;
+      }
+      nav {display: none;}
+    }
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #444;
+      cursor: pointer;
+      z-index: 2000;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+
+  
+    </style>
+</head>
+<body>
+    <!-- Login form -->
+  <div class="login-box">
+    <span class="close-btn" id="innerClose">&times;</span>
+
+
+    <h1 style="font-family: 'Spirax' , cursive">Career Ninja</h1>
+    <p >Inspire someone by your stories and writing</p>
+    <form>
+      <div class="form-group">
+        <label > Enter email address</label>
+        <input type="email" id="Username" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="enterpass" placeholder="Enter your password">
+      </div>
+          <div id="signupmsg" class="msgdiv" style="display: none;"></div>
+
+      <button class="login-btn" id="LOGINbruhh">Log In</button>
+    </form>
+    <div class="dntacc">
+        <a href="#" onclick="window.parent.location.href='SignIN.html';"> Don't have an account ? Sign up</a>
+    </div>
+    
+  </div>
+  <script>
+  // Detect if LOGIN.html is running inside an iframe (modal in MAIN_01.html)
+  if (window.self !== window.top) {
+    // Inside iframe → hide the inner close button
+    document.getElementById("innerClose").style.display = "none";
+  } else {
+    // Opened directly → make close button go back to MAIN_01.html
+    document.getElementById("innerClose").onclick = function () {
+      window.location.href = "MAIN_01.html";
+    };
+  }
+</script>
+</body>
+</html>
