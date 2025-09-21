@@ -32,7 +32,7 @@ const App = () => {
             onClick={() => setSigninOpen(true)}
             className="bg-black text-white px-4 py-1.5 rounded-full text-sm"
           >
-            Sign In
+            Sign Up
           </button>
           <i className="fa-solid fa-globe text-lg cursor-pointer"></i>
         </div>

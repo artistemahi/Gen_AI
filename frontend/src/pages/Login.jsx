@@ -20,7 +20,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setMsg("✅ Login successful! Redirecting...");
-      setTimeout(() => navigate("/dashboard"), 1000);
+      setTimeout(() => navigate("/home"), 1000);
     } catch (err) {
       setMsg("❌ " + err.message);
     }
@@ -39,7 +39,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, demoEmail, demoPassword);
       setMsg("✅ Demo Login successful! Redirecting...");
-      setTimeout(() => navigate("/dashboard"), 1000);
+      setTimeout(() => navigate("/home"), 1000);
     } catch (err) {
       setMsg("❌ " + err.message);
     }
