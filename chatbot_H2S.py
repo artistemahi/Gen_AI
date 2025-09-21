@@ -1,20 +1,22 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # You'll need to install flask-cors package
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import spacy
-import os
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 try:
     nlp = spacy.load("en_core_web_sm")
 except:
+    import os
     os.system("python -m spacy download en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
-# Knowledge Base
 KB_ITEMS = [
     {"question": "How to improve Python skills?", "answer": "Practice coding daily, contribute to open source, and build projects."},
     {"question": "What are in-demand careers in AI?", "answer": "Machine Learning Engineer, Data Scientist, MLOps Engineer, AI Product Manager."},
@@ -24,7 +26,6 @@ KB_ITEMS = [
 
 KB_EMBEDDINGS = model.encode([item["question"] for item in KB_ITEMS])
 
-# Hobby-to-career mapping
 HOBBY_CAREER_MAP = {
     "music": ["Sound Engineer", "Music Therapist", "Composer"],
     "art": ["Graphic Designer", "Animator", "Art Director"],
@@ -33,7 +34,6 @@ HOBBY_CAREER_MAP = {
     "writing": ["Content Writer", "Editor", "Journalist"]
 }
 
-# Functions
 def get_best_answer(query):
     query_emb = model.encode([query])
     sims = cosine_similarity(query_emb, KB_EMBEDDINGS)[0]
@@ -47,26 +47,19 @@ def hobby_match(hobby):
             return f"Based on your interest in {key}, possible careers are: {', '.join(HOBBY_CAREER_MAP[key])}."
     return "I couldn't find a direct match, but exploring related industries could be valuable."
 
-# API Endpoints
 @app.route("/api/ask", methods=["POST"])
 def api_ask():
     data = request.json
-    query = data.get("message", "")
+    query = data.get("query", "")
     answer = get_best_answer(query)
-    return jsonify({"reply": answer})
+    return jsonify({"answer": answer})
 
 @app.route("/api/match", methods=["POST"])
 def api_match():
     data = request.json
-    query = data.get("message", "")
+    query = data.get("query", "")
     answer = hobby_match(query)
-    return jsonify({"reply": answer})
-
-@app.route("/api/skillgap", methods=["POST"])
-def api_skillgap():
-    data = request.json
-    query = data.get("message", "")
-    return jsonify({"reply": f"Skill gap analysis for '{query}' is under development."})
+    return jsonify({"answer": answer})
 
 if __name__ == "__main__":
     app.run(debug=True)
