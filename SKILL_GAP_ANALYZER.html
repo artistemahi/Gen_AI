@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Gap Analyzer</title>
+    <link rel="icon" href="ninja colored.jpg" type="image/jpg">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* ---------------- Page 1 Styles ---------------- */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('body.png') no-repeat;
+      background-size: 220vh 55%;
+      background-position: center 65px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo span {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "Georgia", serif;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .profile-dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+.profile-pic:hover {
+  border-color: #007bff;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 38px;
+  right: 0;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 999;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.dropdown-menu a {
+  color: #333;
+  padding: 10px 16px;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.profile-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+    .second-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 40px;
+      background: #2c3e5b;
+      color: white;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #00ffcc;
+    }
+
+    .menu-links {
+      display: flex;
+      gap: 25px;
+      margin-right: 1100px;
+    }
+
+    .menu-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .menu-links a:hover {
+      color: #00ffcc;
+    }
+    /* === Extra Scrollable Section === */
+.extra-content {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 60px 40px;
+  margin-top: 100vh; /* Ensure it's below the background image */
+  background-color: rgba(255, 255, 255, 0.95); /* Subtle background */
+  z-index: 1; /* Stays below the modal */
+  position: relative;
+}
+
+.feature-section {
+  text-align: center;
+  color: #000;
+  font-family: Georgia, serif;
+  margin-top: -50px;
+}
+
+.feature-section h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+.features p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 8px 0;
+}
+.site-footer {
+  background-color: #1d2d4a;
+  color: white;
+  padding: 40px 30px 20px 30px;
+  font-family: Georgia, serif;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 240px;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-column p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-icons {
+  margin: 10px 0;
+}
+
+.footer-icons a {
+  margin-right: 10px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: #00ffcc;
+}
+
+.footer-links a {
+  display: inline-block;
+  margin-right: 15px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin-top: 30px;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+
+    /* ---------------- Modal (Page 2) ---------------- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 800px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button.analyze-btn {
+      margin-top: 20px;
+      padding: 12px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button.analyze-btn:hover {
+      background: #0056b3;
+    }
+
+    .results {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .skill {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .have { background: #d4edda; }
+    .need { background: #f8d7da; }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 Header -->
+  <div class="header">
+    <div class="logo">
+      <img src="ninja colored.jpg" alt="Career Ninja Logo" />
+      <span>Career Ninja</span>
+    </div>
+    <div class="menu">
+      <div class="profile-dropdown">
+  <img style="width: 40px;" src="ninja img.jpg" alt="Profile Photo" class="profile-pic" />
+  <div class="dropdown-menu">
+    <a href="#">My Profile</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+
+  <!-- Second Header -->
+  <div class="second-header">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="menu-links">
+      <a href="#">More</a>
+      <a href="#">Home</a>
+      <a href="#">Dashboard</a>
+    </div>
+  </div>
+  <div class="extra-content">
+  <div class="feature-section">
+    <h1>PUSH PAST YOUR LIMITS - AI POWERED CAREER GUIDANCE</h1>
+    <div class="features">
+      <p>🤖 Chatbot Assistant &nbsp;&nbsp;&nbsp;📊 AI Skill Gap Analyzer &nbsp;&nbsp;&nbsp;🧩 Job-Hobby Matchmaker</p>
+      <p>🎨 Career Moodboard Generator &nbsp;&nbsp;&nbsp; 🧑‍🏫 Micro-Credential Tracker & Recommender</p>
+      <p>💡 Soft Skills Match & Development Tips</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <img src="ninja colored.jpg" alt="Career Ninja Logo" style="width: 50px; height: 50px;">
+      <h3>Career Ninja</h3>
+      <p>Push! Pass Your Limits 🚀 🔥</p>
+    </div>
+    <div class="footer-column">
+      <h3>Be Part of Our Journey ❤️</h3>
+      <div class="footer-icons">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="#">How It Works</a>
+        <a href="#">Features</a>
+        <a href="#">FAQs</a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>About Us</h3>
+      <p>
+        Career Ninja is an AI-driven platform that serves as your personalized
+        career and skill advisor. Unlike traditional methods, we deliver smarter,
+        faster, and the best results tailored just for you.
+      </p>
+    </div>
+  </div>
+  <hr />
+  <p class="copyright">Copyright © 2025</p>
+</footer>
+
+
+
+  <!-- Modal Popup (Page 2) -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="redirectToPage()">&times;</span>
+      <h1>Skill Gap Analyzer</h1>
+
+      <label for="skills">Enter your current skills (comma separated):</label>
+      <input type="text" id="skills" placeholder="e.g. Python, SQL, TensorFlow">
+
+      <label for="goal">What do you want to become?</label>
+      <select id="goal">
+        <option value="web">Web Developer</option>
+        <option value="frontend">Frontend Developer</option>
+        <option value="backend">Backend Developer</option>
+        <option value="fullstack">Full Stack Developer</option>
+        <option value="data">Data Scientist</option>
+        <option value="ai">Artificial Intelligence Engineer</option>
+        <option value="ml">Machine Learning Engineer</option>
+        <option value="dl">Deep Learning Specialist</option>
+        <option value="game">Game Developer</option>
+        <option value="designer">UI/UX Designer</option>
+        <option value="mobile">Mobile App Developer</option>
+        <option value="devops">DevOps Engineer</option>
+        <option value="cloud">Cloud Engineer</option>
+        <option value="qa">QA / Test Engineer</option>
+        <option value="security">Cybersecurity Specialist</option>
+        <option value="pm">Project Manager</option>
+        <option value="marketing">Digital Marketer</option>
+        <option value="blockchain">Blockchain Developer</option>
+        <option value="arvr">AR/VR Developer</option>
+        <option value="robotics">Robotics Engineer</option>
+        <option value="network">Network Engineer</option>
+        <option value="system">System Administrator</option>
+        <option value="embedded">Embedded Systems Engineer</option>
+        <option value="iot">IoT Developer</option>
+        <option value="bi">Business Intelligence Analyst</option>
+        <option value="automation">Automation Engineer</option>
+        <option value="product">Product Manager</option>
+        <option value="datasecurity">Data Privacy Officer</option>
+        <option value="hardware">Hardware Engineer</option>
+        <option value="support">IT Support Specialist</option>
+        <option value="research">Research Scientist</option>
+        <option value="consultant">Tech Consultant</option>
+      </select>
+
+      <button class="analyze-btn" onclick="analyze()">Analyze Skills</button>
+
+      <div id="results" class="results"></div>
+    </div>
+  </div>
+
+  <script>
+    const roles = {
+      web: { required: {
+        "HTML": "Structures web content.",
+        "CSS": "Design and layouts.",
+        "JavaScript": "Interactivity and logic.",
+        "React": "UI library.",
+        "Node.js": "Backend runtime.",
+        "Databases": "Store and query data.",
+        "APIs": "Connect frontend & backend.",
+        "Accessibility": "Inclusive web design."
+      }},
+      frontend: { required: {
+        "HTML": "Page structure.",
+        "CSS": "Styling and layouts.",
+        "JavaScript": "Dynamic features.",
+        "React/Vue/Angular": "Frontend frameworks.",
+        "TypeScript": "Typed JS for reliability.",
+        "Responsive Design": "Mobile-first layouts.",
+        "Webpack/Vite": "Frontend build tools.",
+        "Testing (Jest)": "Frontend test automation."
+      }},
+      backend: { required: {
+        "Node.js": "Server-side JavaScript.",
+        "Express.js": "API framework.",
+        "Python": "Backend scripting.",
+        "Java": "Enterprise backend apps.",
+        "C#": ".NET applications.",
+        "Databases (SQL/NoSQL)": "Data storage & retrieval.",
+        "APIs/REST/GraphQL": "Communication with clients.",
+        "Authentication": "User login & security."
+      }},
+      fullstack: { required: {
+        "Frontend (React/Angular)": "Client-side apps.",
+        "Backend (Node/Java/Python)": "Server-side logic.",
+        "Databases": "SQL & NoSQL systems.",
+        "REST/GraphQL APIs": "Data transfer.",
+        "DevOps Basics": "Deployment & hosting.",
+        "Git": "Version control.",
+        "Testing": "Unit & integration tests."
+      }},
+      data: { required: {
+        "Python": "Core data language.",
+        "R": "Statistical analysis.",
+        "SQL": "Databases.",
+        "Pandas/Numpy": "Data wrangling.",
+        "Matplotlib/Seaborn": "Visualization.",
+        "Machine Learning": "Predictive models.",
+        "Big Data": "Hadoop, Spark.",
+        "ETL": "Data pipelines."
+      }},
+      ai: { required: {
+        "Python": "Main AI language.",
+        "C++": "Performance AI.",
+        "Linear Algebra": "Math foundation.",
+        "Probability": "Uncertainty modeling.",
+        "Neural Networks": "Brain-inspired models.",
+        "NLP": "Natural Language Processing.",
+        "Computer Vision": "Image recognition.",
+        "Reinforcement Learning": "Reward-based AI.",
+        "PyTorch/TensorFlow": "AI frameworks."
+      }},
+      ml: { required: {
+        "Python": "Core ML language.",
+        "Scikit-learn": "ML library.",
+        "Feature Engineering": "Improving models.",
+        "Model Deployment": "Serving ML models.",
+        "MLOps": "Production ML pipelines.",
+        "Math (Algebra/Stats)": "ML theory base.",
+        "Data Cleaning": "Fix raw datasets."
+      }},
+      dl: { required: {
+        "TensorFlow": "Deep learning framework.",
+        "PyTorch": "DL research framework.",
+        "CNNs": "Image models.",
+        "RNNs/LSTMs": "Sequential models.",
+        "Transformers": "Modern NLP models.",
+        "GANs": "Generative models.",
+        "CUDA": "GPU acceleration.",
+        "Optimization": "Gradient descent, backprop."
+      }},
+      game: { required: {
+        "C++": "Game performance.",
+        "C#": "Unity engine.",
+        "Unity": "Game development engine.",
+        "Unreal Engine": "AAA games engine.",
+        "3D Modeling": "Game assets.",
+        "Animation": "Character motion.",
+        "Game Physics": "Realistic mechanics.",
+        "Networking": "Multiplayer games."
+      }},
+      marketing: { required: {
+        "SEO": "Search ranking.",
+        "Content Writing": "Marketing content.",
+        "Google Analytics": "Website traffic.",
+        "Email Marketing": "Targeted emails.",
+        "Social Media": "Digital campaigns.",
+        "Paid Ads": "Google/Facebook ads.",
+        "Copywriting": "Persuasive content.",
+        "Branding": "Identity creation."
+      }},
+      blockchain: { required: {
+        "Solidity": "Smart contracts.",
+        "Web3.js": "Blockchain integration.",
+        "Ethereum": "Blockchain platform.",
+        "Cryptography": "Transaction security.",
+        "DeFi": "Decentralized finance.",
+        "Consensus": "PoW, PoS mechanisms.",
+        "NFTs": "Digital assets.",
+        "Smart Contracts": "Automated logic."
+      }},
+      arvr: { required: {
+        "Unity": "AR/VR engine.",
+        "Unreal": "VR games.",
+        "C#": "Unity scripting.",
+        "C++": "VR performance.",
+        "3D Modeling": "Immersive design.",
+        "ARKit/ARCore": "Mobile AR dev.",
+        "VR SDKs": "Oculus, HTC Vive.",
+        "Interaction Design": "Immersive UX."
+      }},
+      robotics: { required: {
+        "Python": "Robotics scripting.",
+        "C++": "Real-time robotics.",
+        "ROS": "Robotics middleware.",
+        "Embedded Systems": "Controllers & sensors.",
+        "Computer Vision": "Robot navigation.",
+        "Path Planning": "Movement optimization.",
+        "Mechatronics": "Mechanical + electronics.",
+        "Control Systems": "Robot motion control."
+      }},
+      network: { required: {
+        "TCP/IP": "Core networking.",
+        "DNS": "Domain resolution.",
+        "Firewalls": "Network security.",
+        "Cisco Systems": "Enterprise networking.",
+        "Routing & Switching": "Data flow control.",
+        "VPNs": "Secure networks.",
+        "Wi-Fi Standards": "Wireless networks."
+      }},
+      system: { required: {
+        "Linux": "Server admin.",
+        "Windows Server": "Enterprise admin.",
+        "Bash/Shell": "Command-line automation.",
+        "Virtualization": "VMware, Hyper-V.",
+        "Monitoring": "System health checks.",
+        "Security Hardening": "System defense."
+      }},
+      embedded: { required: {
+        "C": "Embedded coding.",
+        "C++": "Performance systems.",
+        "Assembly": "Low-level hardware.",
+        "Microcontrollers": "Arduino, STM32.",
+        "RTOS": "Real-time operating systems.",
+        "Electronics": "Circuit knowledge."
+      }},
+      iot: { required: {
+        "Python": "IoT scripting.",
+        "C": "Embedded IoT.",
+        "MQTT": "IoT communication protocol.",
+        "Cloud IoT": "AWS/GCP IoT services.",
+        "Sensors": "Data collection devices.",
+        "Networking": "IoT device comms.",
+        "Security": "IoT defense."
+      }},
+      bi: { required: {
+        "Power BI": "Business intelligence dashboards.",
+        "Tableau": "Visualization tool.",
+        "SQL": "Data analysis queries.",
+        "ETL": "Data extraction pipelines.",
+        "Excel": "Spreadsheets.",
+        "Data Warehousing": "Storage optimization."
+      }},
+      automation: { required: {
+        "Python": "Scripting automation.",
+        "Selenium": "Web automation.",
+        "Jenkins": "CI/CD automation.",
+        "Ansible": "Infrastructure automation.",
+        "Bash": "System scripts.",
+        "Robotic Process Automation": "Business process automation."
+      }},
+      product: { required: {
+        "Roadmaps": "Planning product lifecycle.",
+        "Agile": "Scrum/Kanban.",
+        "Leadership": "Team direction.",
+        "Analytics": "Measuring product impact.",
+        "User Research": "Customer feedback.",
+        "Prototyping": "Wireframes & MVPs."
+      }},
+      datasecurity: { required: {
+        "GDPR": "Privacy law compliance.",
+        "Encryption": "Securing data.",
+        "IAM": "Identity & access.",
+        "Security Audits": "Data compliance checks.",
+        "Privacy by Design": "Building secure systems."
+      }},
+      hardware: { required: {
+        "Electronics": "Circuits & design.",
+        "FPGA": "Programmable hardware.",
+        "PCB Design": "Printed circuit boards.",
+        "Verilog/VHDL": "Hardware programming.",
+        "Microprocessors": "Hardware control."
+      }},
+      support: { required: {
+        "Troubleshooting": "Fixing IT issues.",
+        "Networking": "Basic connectivity.",
+        "Windows/Linux": "OS knowledge.",
+        "Customer Service": "Support users.",
+        "Ticketing Systems": "ServiceNow, JIRA."
+      }},
+      research: { required: {
+        "Scientific Method": "Research fundamentals.",
+        "Python/R": "Data analysis.",
+        "Academic Writing": "Publishing research.",
+        "ML/AI": "Research applications.",
+        "Experimentation": "Testing hypotheses."
+      }},
+      consultant: { required: {
+        "Communication": "Client interaction.",
+        "Tech Strategy": "Advising solutions.",
+        "Cloud Knowledge": "AWS/Azure/GCP.",
+        "Business Analysis": "Understanding needs.",
+        "Presentation": "Explaining solutions."
+      }}
+    };
+    function redirectToPage() {
+  // Replace 'target.html' with the URL of the page you want to redirect to
+  window.location.href = 'Afterlogin.html';
+}
+
+
+    function analyze() {
+      const userSkills = document.getElementById("skills").value.split(",").map(s => s.trim().toLowerCase());
+      const goal = document.getElementById("goal").value;
+      const role = roles[goal];
+      let output = `<h3>Required Skills for ${document.getElementById("goal").options[document.getElementById("goal").selectedIndex].text}:</h3>`;
+      for (let skill in role.required) {
+        if (userSkills.includes(skill.toLowerCase())) {
+          output += `<div class="skill have"><b>${skill}</b> ✅ <br><small>${role.required[skill]}</small></div>`;
+        } else {
+          output += `<div class="skill need"><b>${skill}</b> ❌ <br><small>${role.required[skill]}</small></div>`;
+        }
+      }
+      document.getElementById("results").innerHTML = output;
+    }
+
+    // Show the modal on page load
+    window.onload = function () {
+      document.getElementById("modal").style.display = "block";
+    }
+
+    // Optional: close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

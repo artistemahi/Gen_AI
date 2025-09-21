@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Gap Analyzer + Job-Hobby Matchmaker</title>
+    <link rel="icon" href="ninja colored.jpg" type="image/jpg">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* ---------------- Page 1 Styles ---------------- */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('body.png') no-repeat;
+      background-size: 220vh 55%;
+      background-position: center 65px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      z-index: 1;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo span {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "Georgia", serif;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .profile-pic {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      transition: border-color 0.3s;
+    }
+
+    .profile-pic:hover {
+      border-color: #007bff;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 38px;
+      right: 0;
+      background-color: white;
+      min-width: 140px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 999;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .dropdown-menu a {
+      color: #333;
+      padding: 10px 16px;
+      display: block;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .profile-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .second-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 40px;
+      background: #2c3e5b;
+      color: white;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #00ffcc;
+    }
+
+    .menu-links {
+      display: flex;
+      gap: 25px;
+      margin-right: 1100px;
+    }
+
+    .menu-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .menu-links a:hover {
+      color: #00ffcc;
+    }
+
+    .extra-content {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 60px 40px;
+      margin-top: 100vh;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 1;
+      position: relative;
+    }
+
+    .feature-section {
+      text-align: center;
+      color: #000;
+      font-family: Georgia, serif;
+      margin-top: -50px;
+    }
+
+    .feature-section h1 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .features p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 8px 0;
+    }
+
+    .site-footer {
+      background-color: #1d2d4a;
+      color: white;
+      padding: 40px 30px 20px 30px;
+      font-family: Georgia, serif;
+      z-index: 1;
+      position: relative;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .footer-column h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .footer-column p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-icons {
+      margin: 10px 0;
+    }
+
+    .footer-icons a {
+      margin-right: 10px;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: #00ffcc;
+    }
+
+    .footer-links a {
+      display: inline-block;
+      margin-right: 15px;
+      margin-top: 8px;
+      font-size: 14px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      margin-top: 30px;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    /* ---------------- Modal Styles (Page 2) ---------------- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.5);
+      padding: 50px 0;
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: auto;
+      margin-top: 50px;
+      padding: 55px;
+      border-radius: 12px;
+      max-width: 950px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .modal-content .findmy{
+        margin-left: 380px;
+      margin-top: 100px;
+    }
+
+    .modal-content h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border: 1px solid #4CAF50;
+      box-shadow: none;
+    }
+
+    .suggestions {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-height: 150px;
+      overflow-y: auto;
+      border-radius: 8px;
+      margin-top: 2px;
+      z-index: 1000;
+    }
+
+    .suggestions div {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .suggestions div:hover {
+      background: #f1f1f1;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .career {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      border-left: 5px solid #007bff;
+    }
+
+    .career h3 {
+      margin-top: 0;
+      color: #007bff;
+    }
+
+    .career ul {
+      margin: 5px 0 0 20px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    .warning {
+      color: #dc3545;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 Content -->
+  <div class="header">
+    <div class="logo">
+      <img src="ninja colored.jpg" alt="Career Ninja Logo" />
+      <span>Career Ninja</span>
+    </div>
+    <div class="menu">
+      <div class="profile-dropdown">
+        <img style="width: 40px;" src="ninja img.jpg" alt="Profile Photo" class="profile-pic" />
+        <div class="dropdown-menu">
+          <a href="#">My Profile</a>
+          <a href="#">Settings</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-header">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="menu-links">
+      <a href="#">More</a>
+      <a href="#">Home</a>
+      <a href="#">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="extra-content">
+    <div class="feature-section">
+      <h1>PUSH PAST YOUR LIMITS - AI POWERED CAREER GUIDANCE</h1>
+      <div class="features">
+        <p>🤖 Chatbot Assistant &nbsp;&nbsp;&nbsp;📊 AI Skill Gap Analyzer &nbsp;&nbsp;&nbsp;🧩 Job-Hobby Matchmaker</p>
+        <p>🎨 Career Moodboard Generator &nbsp;&nbsp;&nbsp; 🧑‍🏫 Micro-Credential Tracker & Recommender</p>
+        <p>💡 Soft Skills Match & Development Tips</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <img src="ninja colored.jpg" alt="Career Ninja Logo" style="width: 50px; height: 50px;">
+        <h3>Career Ninja</h3>
+        <p>Push! Pass Your Limits 🚀 🔥</p>
+      </div>
+      <div class="footer-column">
+        <h3>Be Part of Our Journey ❤️</h3>
+        <div class="footer-icons">
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <div class="footer-links">
+          <a href="#">How It Works</a>
+          <a href="#">Features</a>
+          <a href="#">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <p>
+          Career Ninja is an AI-driven platform that serves as your personalized
+          career and skill advisor. Unlike traditional methods, we deliver smarter,
+          faster, and the best results tailored just for you.
+        </p>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright">Copyright © 2025</p>
+  </footer>
+
+  <!-- Modal for Page 2 -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+    <span id="closeModal" style="
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #333;
+    " >&times;</span> 
+      <h1>🎯 Job-Hobby Matchmaker</h1>
+      <label for="hobbies">Enter your hobbies (comma separated):</label>
+      <input type="text" id="hobbies" placeholder="e.g. Drawing, Gaming, Writing, Coding" onkeyup="showSuggestions(this.value)">
+      <div id="suggestions" class="suggestions"></div>
+      <button class="findmy" onclick="matchCareer()">Find My Career Path</button>
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <script>
+  // Show modal automatically on page load
+  window.onload = function() {
+    document.getElementById('modal').style.display = 'block';
+  };
+
+  // Close button functionality
+  document.getElementById("closeModal").onclick = function() {
+    // Close the modal
+    document.getElementById('modal').style.display = 'none';
+    // Redirect after closing (space for redirect)
+    window.location.href = "Afterlogin.html"; // <-- replace with your target page
+  };
+
+  // Hobby → Career mapping and functions remain the same
+  const hobbyCareers = {
+    drawing: { career: "Graphic Designer / Illustrator", pros: ["Creative freedom"], cons: ["Competitive field"], salary: "$40k-$70k", locations: ["Agencies", "Freelance"], future: "Growing demand" },
+      gaming: { career: "Game Developer / eSports Pro", pros: ["Fun industry"], cons: ["Tough competition"], salary: "$50k-$120k", locations: ["Studios", "Streaming"], future: "Huge growth" },
+      writing: { career: "Content Writer / Journalist", pros: ["Creative"], cons: ["Deadlines"], salary: "$30k-$80k", locations: ["Media", "Freelance"], future: "SEO content booming" },
+      coding: { career: "Software Engineer", pros: ["High pay"], cons: ["Work pressure"], salary: "$70k-$150k", locations: ["Tech firms"], future: "Evergreen" },
+      photography: { career: "Photographer", pros: ["Creative outlet"], cons: ["Unstable income"], salary: "$25k-$90k", locations: ["Studios"], future: "Social media demand" },
+      sports: { career: "Athlete / Coach", pros: ["Prestige"], cons: ["Physically demanding"], salary: "$30k-$200k", locations: ["Teams", "Gyms"], future: "Sports industry growing" },
+      cooking: { career: "Chef / Food Blogger", pros: ["Creative"], cons: ["Long hours"], salary: "$25k-$80k", locations: ["Restaurants"], future: "Hospitality strong" },
+      music: { career: "Musician / Producer", pros: ["Fame"], cons: ["High competition"], salary: "$20k-$100k", locations: ["Studios"], future: "Streaming platforms" },
+      teaching: { career: "Teacher / Educator", pros: ["Stable"], cons: ["Low pay"], salary: "$30k-$80k", locations: ["Schools", "Online"], future: "EdTech booming" },
+      traveling: { career: "Travel Blogger / Guide", pros: ["Adventure"], cons: ["High expenses"], salary: "$20k-$70k", locations: ["Agencies"], future: "Digital nomads rising" },
+      painting: { career: "Artist", pros: ["Creative"], cons: ["Hard income"], salary: "$20k-$60k", locations: ["Galleries"], future: "Digital art growing" },
+      acting: { career: "Actor / Theatre Artist", pros: ["Fame"], cons: ["Unstable"], salary: "$25k-$1M", locations: ["Film", "OTT"], future: "OTT growth" },
+      fashion: { career: "Fashion Designer", pros: ["Creative"], cons: ["Competitive"], salary: "$30k-$100k", locations: ["Brands"], future: "Fashion-tech" },
+      dancing: { career: "Dancer / Choreographer", pros: ["Global demand"], cons: ["Physically demanding"], salary: "$20k-$80k", locations: ["Studios"], future: "Rising demand" },
+      blogging: { career: "Digital Blogger / Influencer", pros: ["Remote"], cons: ["Competitive"], salary: "$20k-$100k", locations: ["Brands"], future: "Influencer marketing" },
+      gardening: { career: "Landscape Designer", pros: ["Eco-friendly"], cons: ["Seasonal"], salary: "$25k-$70k", locations: ["Urban planning"], future: "Urban gardens" },
+      yoga: { career: "Yoga Instructor", pros: ["Healthy"], cons: ["Certification"], salary: "$20k-$60k", locations: ["Gyms", "Retreats"], future: "Wellness booming" },
+      debating: { career: "Lawyer / Public Speaker", pros: ["Prestigious"], cons: ["Stressful"], salary: "$50k-$150k", locations: ["Courts"], future: "Legal strong" },
+      investing: { career: "Financial Analyst", pros: ["High earning"], cons: ["Risk"], salary: "$60k-$200k", locations: ["Banks"], future: "Fintech booming" },
+      volunteering: { career: "NGO Worker", pros: ["Respectable"], cons: ["Low pay"], salary: "$20k-$50k", locations: ["Charities"], future: "Social demand" },
+      mechanics: { career: "Automobile Engineer", pros: ["Evergreen"], cons: ["Physical"], salary: "$30k-$80k", locations: ["EV firms"], future: "EV revolution" },
+      robotics: { career: "Robotics Engineer", pros: ["Future tech"], cons: ["Complex"], salary: "$80k-$150k", locations: ["AI labs"], future: "Automation growth" },
+      astronomy: { career: "Astronomer", pros: ["Prestigious"], cons: ["Long studies"], salary: "$70k-$120k", locations: ["NASA", "ISRO"], future: "Space industry booming" },
+      chess: { career: "Chess Player / Coach", pros: ["Recognition"], cons: ["Unstable income"], salary: "$20k-$100k", locations: ["Federations"], future: "Online chess rising" },
+      filmmaking: { career: "Director / Editor", pros: ["Creative"], cons: ["Expensive"], salary: "$40k-$150k", locations: ["Film", "OTT"], future: "Streaming growth" },
+      contentcreation: { career: "Content Creator / YouTuber", pros: ["Independence"], cons: ["Requires consistency"], salary: "$20k-$200k", locations: ["YouTube", "TikTok"], future: "Exploding industry" },
+      podcasting: { career: "Podcaster / Radio Host", pros: ["Creative"], cons: ["Slow growth"], salary: "$20k-$80k", locations: ["Spotify", "Apple Podcasts"], future: "Podcast demand growing" },
+      cybersecurity: { career: "Cybersecurity Analyst", pros: ["High demand"], cons: ["Stressful"], salary: "$70k-$140k", locations: ["Tech firms"], future: "Critical field" },
+      datasci: { career: "Data Scientist", pros: ["High salary"], cons: ["Steep learning"], salary: "$90k-$160k", locations: ["Finance", "Tech"], future: "Big data booming" },
+      ai: { career: "AI Engineer", pros: ["Future industry"], cons: ["Complex field"], salary: "$100k-$180k", locations: ["AI labs"], future: "AI revolution" },
+      marketing: { career: "Digital Marketer", pros: ["High demand"], cons: ["Competitive"], salary: "$50k-$120k", locations: ["Agencies"], future: "E-commerce growth" },
+      speaking: { career: "Motivational Speaker", pros: ["Influence"], cons: ["Unstable income"], salary: "$20k-$100k", locations: ["Events"], future: "Corporate demand" },
+      webdev: { career: "Web Developer", pros: ["High demand"], cons: ["Fast-changing"], salary: "$60k-$120k", locations: ["Startups"], future: "Web3 growth" },
+      environment: { career: "Environmental Activist / Scientist", pros: ["Impactful"], cons: ["Low pay"], salary: "$30k-$70k", locations: ["NGOs", "Research"], future: "Sustainability rising" }
+  };
+
+  const hobbyList = Object.keys(hobbyCareers);
+
+  function showSuggestions(input) {
+    const suggestionsDiv = document.getElementById("suggestions");
+    suggestionsDiv.innerHTML = "";
+    if (!input) return;
+
+    const query = input.toLowerCase().split(",").pop().trim();
+    if (query.length === 0) return;
+
+    const matches = hobbyList.filter(hobby => hobby.startsWith(query));
+    matches.forEach(match => {
+      const div = document.createElement("div");
+      div.innerHTML = match.charAt(0).toUpperCase() + match.slice(1);
+      div.onclick = function() {
+        let current = document.getElementById("hobbies").value.split(",");
+        current[current.length - 1] = match;
+        document.getElementById("hobbies").value = current.join(", ");
+        suggestionsDiv.innerHTML = "";
+      };
+      suggestionsDiv.appendChild(div);
+    });
+  }
+
+  function matchCareer() {
+    const input = document.getElementById("hobbies").value.toLowerCase().split(",");
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
+
+    input.forEach(hobby => {
+      hobby = hobby.trim();
+      if (hobby && hobbyCareers[hobby]) {
+        const careerData = hobbyCareers[hobby];
+        let careerHTML = `
+          <div class="career">
+            <h3>💼 Suggested Career: ${careerData.career}</h3>
+            <p><span class="highlight">Future Outlook:</span> ${careerData.future}</p>
+            <p><span class="highlight">Salary Range:</span> ${careerData.salary}</p>
+            <p><span class="highlight">Work Locations:</span> ${careerData.locations.join(", ")}</p>
+            <p><span class="highlight">Pros:</span></p>
+            <ul>${careerData.pros.map(p => `<li>✅ ${p}</li>`).join("")}</ul>
+            <p><span class="warning">Cons:</span></p>
+            <ul>${careerData.cons.map(c => `<li>❌ ${c}</li>`).join("")}</ul>
+          </div>
+        `;
+        resultsDiv.innerHTML += careerHTML;
+      }
+    });
+
+    if (resultsDiv.innerHTML === "") {
+      resultsDiv.innerHTML = "<p>No direct career match found. Try different keywords.</p>";
+    }
+  }
+</script>
+</body>
+</html>
