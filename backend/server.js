@@ -1,4 +1,3 @@
-// backend/server.js
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -12,8 +11,12 @@ app.use(express.json());
 
 app.use("/user", userRoutes);
 
-app.get("/", (req, res) => res.send("Backend running ✅"));
+app.get("/", (req, res) => res.send("Backend running"));
 
-app.listen(process.env.PORT || 5000, () =>
-  console.log(`Server running on port ${process.env.PORT || 5000}`)
-);
+// Local development ke liye app.listen chalana, production (vercel) me nahi
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;
